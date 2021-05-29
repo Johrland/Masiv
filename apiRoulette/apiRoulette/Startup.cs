@@ -26,10 +26,9 @@ namespace apiRoulette
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDistributedRedisCache(options =>
+            services.AddDistributedRedisCache(option =>
             {
-                options.Configuration = "localhost:6380";
-                options.InstanceName = "localhost";
+                option.Configuration = "127.0.0.1:6379,password=password123,abortConnect=false";
             });
         }
 
