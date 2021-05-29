@@ -1,8 +1,10 @@
 ﻿using apiRoulette.Admin;
+using apiRoulette.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.Memory;
-using System;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace apiRoulette.Controllers
 {
@@ -24,11 +26,21 @@ namespace apiRoulette.Controllers
         [HttpGet]
         public JsonResult Roulette()
         {
-            int test;
-            bool success = Int32.TryParse(_cache.GetString("id"), out test);
-                test = new adminRoulette().createRullete(test, success);
-                _cache.SetString("id", test.ToString());
-                return new JsonResult(test);
+            List<Roulette> roulettes;
+              try {roulettes = JsonConvert.DeserializeObject<List<Roulette>>(_cache.GetString("roulettes"));}
+            catch { roulettes = null; }
+
+            if (roulettes is null)
+            {
+                Roulette roulette = new adminRoulette().createRullete();
+                roulettes = new List<Roulette>();
+                roulettes.Add(roulette);
+            }
+            else { roulettes = new adminRoulette().createRullete(roulettes); }
+            
+            _cache.SetString("roulettes", JsonConvert.SerializeObject(roulettes, Formatting.Indented));
+
+            return new JsonResult(roulettes.LastOrDefault().id);
         }
         
 

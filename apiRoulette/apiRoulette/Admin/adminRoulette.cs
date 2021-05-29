@@ -1,4 +1,5 @@
-﻿using System;
+﻿using apiRoulette.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,18 +8,25 @@ namespace apiRoulette.Admin
 {
     public class adminRoulette
     {
-        public int createRullete(int id, bool success)
+        public Roulette createRullete()
         {
-            if (success)
-            {
-                id = 1;
-            }
-            else
-            {
-                id = 2;
-            }
-
-            return id;
+            Roulette roulette = new Roulette
+                {
+                    id = 1,
+                    status = "Close",
+                    bets = new List<Bet>()
+                };
+            
+            return roulette;
+        }
+        public List<Roulette> createRullete(List<Roulette> roulettes)
+        { 
+            roulettes.Add(new Roulette {
+                    id = roulettes.LastOrDefault().id + 1,
+                    status = "Close",
+                    bets = new List<Bet>()
+            });
+            return roulettes;
         }
 
     }
