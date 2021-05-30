@@ -1,104 +1,61 @@
 # Prueba de Clean Code para Masivian | API Rest 
-El objetivo de la prueba es desarrollar un API con cuatro Endpoints aplicando las 12 reglas minimas de Clean Code definidas por Masiv
+El objetivo de la prueba es desarrollar un API con cuatro Endpoints aplicando las 12 reglas minimas de Clean Code definidas por Masiv, ver [Masiv Masivian](https://masiv.com/) - Masiv.com
 
-## Comenzando 🚀
+## Comenzando 🚀 
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
-
-Mira **Deployment** para conocer como desplegar el proyecto.
+Puede Clonar este github para realizar pruebas y/o actualizar el codigo fuente, recuerde modificar la conexion al servidor REDIS
 
 
 ### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
-
-```
-Da un ejemplo
-```
+1. Visual Studio 2017 o superior
+2. Docker
+3. Servidor Redis version 3.7 o superior
 
 ### Instalación 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
-
-```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
+1. Instala Visual Studio desde la pagina de Microsoft | [Descarga Visual Studio](https://visualstudio.microsoft.com/es/free-developer-offers/) 
+2. Instala Docker en una maquina virtual, ejemplo W10 | [Descarga Docker W10](https://docs.docker.com/docker-for-windows/install/)
+3. Clona la imagen de Redis, o ejecuta el docker-compose ubicado en | [Imagen Redis Docker Hub](https://hub.docker.com/r/bitnami/redis) 
 
 ## Despliegue 📦
 
-_Agrega notas adicionales sobre como hacer deploy_
+Con el objetivo de simplificar el despliegue se crea una imagen Docker con el publicado de la solucion de API en Docker Hub, de tal modo que se pueda clonar la imagen desde cual quier localidad. Adicionalmente en la ruta *** se almacena el archivo docker-compose.yml con el cual se despliega automaticamente el API y el servicio REDIS, ver [Docker Hub](https://hub.docker.com/r/johrland/apiroulette)
+
+Se debe modificar el archivo docker-compose.yml en las lineas indicadas a continuacion para especificar los datos de la direccion IP y la contraseña del servidor 
+```
+services:
+    apiroulette:
+        environment:
+            - REDIS_SERVER=IP_REDIS_SERVER:6379
+            - REDIS_PASSWORD=PASSWORD_REDIS
+ .
+ .
+ .
+    redis:
+        environment:
+            - REDIS_PASSWORD=PASSWORD_REDIS
+```
+## Endponts
+
+1. ListRoulettes - Lista todas las ruletas creadas sin discriminar el estado.
+2. CreateRoulette - Crea una Ruleta (Por defecto se crea con estado Cerrada, el Id es autoincremental)
+3. OpenRoulette - Abre las apuestas en una Ruleta, dejandola disponible para realizar apuestas (Si la ruleta se encuentra Cerrada y contiene apuestas las reinicia)
+4. BidBet - Registra una apuesta en la ruleta indicada.
+5. CloseRoulette - Cierra las apuestas en una Ruleta, inposibilitando el registro de nuevas apuestas y calcula las ganancias para los usuarios.
+
+## Pruebas 
+
+En la ruta *** se encuentra el archivo **Test.postman_collection.json** con el cual podra realizar las pruebas de todos los Endpoints implementados por el API
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://gist.github.com/villanuevand/xxxxxx) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Wiki 📖
-
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/tu/proyecto/wiki)
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+* [.Net Core](https://docs.microsoft.com/en-us/dotnet/) - Framework .NetCore 2.1.1
+* [Redis](https://redis.io/documentation) - Redis, Almacen Cache distribuido. 
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
+* **Johan Loaiza** - *Trabajo Inicial* - [Johrland](https://github.com/Johrland)
 
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
-## Licencia 📄
-
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
-
-
----
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊
+También puedes mirar la lista de todos los [contribuyentes](https://github.com/Masiv/graphs/contributors) quíenes han participado en este proyecto. 
+  
