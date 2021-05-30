@@ -16,11 +16,11 @@ Puede Clonar este github para realizar pruebas y/o actualizar el codigo fuente, 
 
 1. Instala Visual Studio desde la pagina de Microsoft | [Descarga Visual Studio](https://visualstudio.microsoft.com/es/free-developer-offers/) 
 2. Instala Docker en una maquina virtual, ejemplo W10 | [Descarga Docker W10](https://docs.docker.com/docker-for-windows/install/)
-3. Clona la imagen de Redis, o ejecuta el docker-compose ubicado en | [Imagen Redis Docker Hub](https://hub.docker.com/r/bitnami/redis) 
+3. Clona la imagen de Redis, o ejecuta el docker-compose ubicado en la ruta [/main/Docker YML/Redis](https://github.com/Johrland/Masiv/tree/main/Docker%20YML/Redis) | [Imagen Redis Docker Hub](https://hub.docker.com/r/bitnami/redis) 
 
 ## Despliegue 📦
 
-Con el objetivo de simplificar el despliegue se crea una imagen Docker con el publicado de la solucion de API en Docker Hub, de tal modo que se pueda clonar la imagen desde cual quier localidad. Adicionalmente en la ruta *** se almacena el archivo docker-compose.yml con el cual se despliega automaticamente el API y el servicio REDIS, ver [Docker Hub](https://hub.docker.com/r/johrland/apiroulette)
+Con el objetivo de simplificar el despliegue se crea una imagen Docker con el publicado de la solucion de API en Docker Hub, de tal modo que se pueda clonar la imagen desde cual quier localidad. Adicionalmente se almacena el archivo [docker-compose.yml](https://github.com/Johrland/Masiv/blob/main/Docker%20YML/Release/docker-compose.yml) con el cual se despliega automaticamente el API y el servicio REDIS, ver [Docker Hub](https://hub.docker.com/r/johrland/apiroulette)
 
 Se debe modificar el archivo docker-compose.yml en las lineas indicadas a continuacion para especificar los datos de la direccion IP y la contraseña del servidor 
 ```
@@ -46,7 +46,7 @@ services:
 
 ## Pruebas 
 
-En la ruta *** se encuentra el archivo **Test.postman_collection.json** con el cual podra realizar las pruebas de todos los Endpoints implementados por el API
+Puede emplear el archivo [Test Endpoint](https://github.com/Johrland/Masiv/blob/main/Test.postman_collection.json) el cual le permitira realizar las pruebas de todos los Endpoints implementados por el API.
 
 ## Construido con 🛠️
 
