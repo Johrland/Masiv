@@ -1,0 +1,26 @@
+version: '2'
+networks:
+  mydockerapi-dev:
+    driver: bridge 
+services:
+    apiroulette:
+        image: johrland/apiroulette:latest
+        depends_on:
+            - "redis"
+        ports:
+            - 8081:80
+            - 8082:443
+        environment:
+            - REDIS_SERVER=IP_REDIS_SERVER:6379
+            - REDIS_PASSWORD=PASSWORD_REDIS
+        networks:
+            - mydockerapi-dev 
+    
+    redis:
+        image: 'bitnami/redis:latest'
+        ports:
+            - 6379:6379
+        environment:
+            - REDIS_PASSWORD=PASSWORD_REDIS
+        networks:
+            - mydockerapi-dev 
