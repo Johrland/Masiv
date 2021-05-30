@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "9c914c7e-5126-4b35-9e9d-8544ec4c1f2e",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TestCreate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8081/Admin/CreateRoulette",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"Admin",
+						"CreateRoulette"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestOpen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/admin/OpenRoulette?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"admin",
+						"OpenRoulette"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestBet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "userId",
+						"value": "5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"rouletteId\":1,\"betType\":\"Number\",\"bet\":16,\"amount\":100}"
+				},
+				"url": {
+					"raw": "https://localhost:44338/api/Admin/BidBet",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44338",
+					"path": [
+						"api",
+						"Admin",
+						"BidBet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestClose",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44338/api/Admin/CloseRoulette?id=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44338",
+					"path": [
+						"api",
+						"Admin",
+						"CloseRoulette"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestListRoulettes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/admin/ListRoulettes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"admin",
+						"ListRoulettes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
