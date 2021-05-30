@@ -20,31 +20,34 @@ namespace apiRoulette.Controllers
             _cache = cache;
         }
         [HttpGet]
-        public JsonResult index()
+        public JsonResult ListRoulettes()
         {
-            List<Roulette> roulettes;
+            List<Roulette> roulettes = new List<Roulette>();
             try
             {
                 roulettes = JsonConvert.DeserializeObject<List<Roulette>>(_cache.GetString("roulettes"));
+
                 return new JsonResult(roulettes);
             }
             catch (Exception ex)
-            {
-                return new JsonResult("Error: " + ex.ToString());
+            { 
+                return new JsonResult("Aun no se han Creado Ruletas");
             }
         }
         [HttpGet]
         public JsonResult OpenRoulette(int id)
         {
             List<Roulette> roulettes;
-            try { roulettes = JsonConvert.DeserializeObject<List<Roulette>>(_cache.GetString("roulettes"));
-
+            try
+            {
+                roulettes = JsonConvert.DeserializeObject<List<Roulette>>(_cache.GetString("roulettes"));
                 adminRoulette admin = new adminRoulette();
                 Roulette roulette = admin.searchRoulette(roulettes,id);
                 if (roulette != null && roulette.status.Equals("Close"))
                 {
                     admin.openRoulette(roulettes, roulette);
                     _cache.SetString("roulettes", JsonConvert.SerializeObject(roulettes, Formatting.Indented));
+
                     return new JsonResult("OK");
                 }
                 else { return new JsonResult("Error: Rouleta no Existe o ya se encuentra abierta"); }
@@ -60,7 +63,6 @@ namespace apiRoulette.Controllers
             List<Roulette> roulettes;
               try {roulettes = JsonConvert.DeserializeObject<List<Roulette>>(_cache.GetString("roulettes"));}
             catch { roulettes = null; }
-
             if (roulettes is null)
             {
                 Roulette roulette = new adminRoulette().createRoulette();
@@ -70,7 +72,6 @@ namespace apiRoulette.Controllers
                 };
             }
             else { roulettes = new adminRoulette().createRoulette(roulettes); }
-            
             _cache.SetString("roulettes", JsonConvert.SerializeObject(roulettes, Formatting.Indented));
 
             return new JsonResult(roulettes.LastOrDefault().id);
@@ -90,13 +91,13 @@ namespace apiRoulette.Controllers
                     { 
                         admin.makeBet(roulettes, roulette, bet);
                         _cache.SetString("roulettes", JsonConvert.SerializeObject(roulettes, Formatting.Indented));
+
                         return new JsonResult("OK");
                     } else { return new JsonResult("Error: Rouleta no Existe"); }
                 } 
-                else { return new JsonResult("Error : Revisar datos de Apuesta, Data : " + bet.ToString());}
+                else { return new JsonResult("Error : Revisar datos de Apuesta"); }
             }
             catch (Exception ex) { return new JsonResult("Error: " + ex.ToString()); }
-            
         }
         [HttpGet]
         public JsonResult CloseRoulette(int id)
@@ -105,7 +106,6 @@ namespace apiRoulette.Controllers
             try
             {
                 roulettes = JsonConvert.DeserializeObject<List<Roulette>>(_cache.GetString("roulettes"));
-
                 adminRoulette admin = new adminRoulette();
                 Roulette roulette = admin.searchRoulette(roulettes, id);
                 if (roulette != null && roulette.status.Equals("Open"))
